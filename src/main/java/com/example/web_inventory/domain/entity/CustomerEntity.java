@@ -10,7 +10,7 @@ import lombok.Data;
 @Entity(name = "clients")
 @Table(name = "clients")
 @Data
-public class ClientEntity {
+public class CustomerEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,4 +18,7 @@ public class ClientEntity {
 
     private String name;
 
+    private String phone;
+
+    private String email;
 }
