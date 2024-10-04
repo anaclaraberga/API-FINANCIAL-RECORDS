@@ -2,6 +2,7 @@ package com.example.web_inventory.domain.entity;
 
 import com.example.web_inventory.domain.entity.enums.Category;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,10 +19,13 @@ public class SupplierEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 355)
     private String companyName;
 
+    @Column(nullable = false, length = 14)
     private String cnpj;
 
+    @Column(nullable = false)
     private Category category;
 
 }
