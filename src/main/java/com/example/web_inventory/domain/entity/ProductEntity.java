@@ -24,10 +24,10 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "date_time_at_creation")
     private DateTimeAtCreation dateTimeAtCreation;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 355)
     private String description;
 
     @Column(nullable = false)
