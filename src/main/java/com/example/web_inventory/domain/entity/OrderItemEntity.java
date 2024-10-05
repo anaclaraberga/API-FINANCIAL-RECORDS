@@ -14,7 +14,7 @@ public class OrderItemEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     
 }
