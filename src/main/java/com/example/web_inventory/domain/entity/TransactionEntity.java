@@ -2,6 +2,10 @@ package com.example.web_inventory.domain.entity;
 
 import java.math.BigInteger;
 
+import javax.print.attribute.standard.DateTimeAtCreation;
+
+import com.example.web_inventory.domain.entity.enums.PaymentMethod;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,12 +26,12 @@ public class TransactionEntity {
     @Column(nullable = false)
     private OrderEntity order;
 
+    @Column(nullable = false, name = "date_time_at_creation")
+    private DateTimeAtCreation dateTimeAtCreation;
+
     @Column(nullable = false)
-    private ProductEntity product;
+    private BigInteger amount;
 
-    @Column(nullable = false, length = 5)
-    private Integer quantity;
-
-    @Column(nullable = false, length = 15)
-    private BigInteger unitPrice;
+    @Column(nullable = false)
+    private PaymentMethod paymentMethod;
 }

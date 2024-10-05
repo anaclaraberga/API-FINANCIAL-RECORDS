@@ -19,7 +19,7 @@ public class OrderEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @Column(nullable = false, name = "date_time_at_creation")
     private DateTimeAtCreation dateTimeAtCreation;
