@@ -1,10 +1,10 @@
-package com.example.expense_control;
+package com.example.web_inventory;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ExpenseControlApplicationTests {
+class WebInventoryApplicationTests {
 
 	@Test
 	void contextLoads() {
