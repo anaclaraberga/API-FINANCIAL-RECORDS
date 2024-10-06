@@ -1,8 +1,10 @@
-package com.example.web_inventory.domain.entity;
+package com.example.web_inventory.infra.entity;
+
+import java.math.BigInteger;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
 
-import com.example.web_inventory.domain.entity.enums.Status;
+import com.example.web_inventory.infra.entity.enums.PaymentMethod;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,21 +14,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity(name = "orders")
-@Table(name = "orders")
+@Table(name="transactions")
+@Entity(name="transactions")
 @Data
-public class OrderEntity {
+public class TransactionEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private OrderEntity order;
+
     @Column(nullable = false, name = "date_time_at_creation")
     private DateTimeAtCreation dateTimeAtCreation;
 
     @Column(nullable = false)
-    private CustomerEntity customer;
+    private BigInteger amount;
 
     @Column(nullable = false)
-    private Status status;
+    private PaymentMethod paymentMethod;
 }

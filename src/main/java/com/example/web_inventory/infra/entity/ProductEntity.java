@@ -1,11 +1,11 @@
-package com.example.web_inventory.domain.entity;
+package com.example.web_inventory.infra.entity;
 
 import java.math.BigInteger;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
 
-import com.example.web_inventory.domain.entity.enums.Category;
-import com.example.web_inventory.domain.entity.enums.Status;
+import com.example.web_inventory.infra.entity.enums.Category;
+import com.example.web_inventory.infra.entity.enums.Status;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

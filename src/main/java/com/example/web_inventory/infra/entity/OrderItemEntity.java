@@ -1,4 +1,4 @@
-package com.example.web_inventory.domain.entity;
+package com.example.web_inventory.infra.entity;
 
 import java.math.BigInteger;
 

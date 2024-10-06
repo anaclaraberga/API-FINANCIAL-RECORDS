@@ -1,4 +1,4 @@
-package com.example.web_inventory.domain.entity;
+package com.example.web_inventory.infra.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,10 +8,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity(name = "customers")
-@Table(name = "customers")
+@Table(name="users")
+@Entity(name="users")
 @Data
-public class CustomerEntity {
+public class UserEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +20,9 @@ public class CustomerEntity {
     @Column(nullable = false, length = 255)
     private String name;
 
-    @Column(nullable = false, length = 11)
-    private String phone;
-
     @Column(nullable = false, length = 255)
     private String email;
+
+    @Column(nullable = false, length = 255)
+    private String password;
 }
