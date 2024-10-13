@@ -20,9 +20,15 @@ public class Customer {
     @Column(nullable = false, length = 255)
     private String name;
 
+    @Column(nullable = false, length = 14, table = "cpf_cnpj")
+    private String nationalRegistry;
+
     @Column(nullable = false, length = 11)
     private String phone;
 
     @Column(nullable = false, length = 255)
     private String email;
+
+    @Column(nullable = false, length = 8, table = "cep")
+    private String zipCode;
 }
