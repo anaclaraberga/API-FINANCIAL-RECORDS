@@ -1,4 +1,4 @@
-package com.example.web_inventory.infra.enums;
+package com.example.web_inventory.enums;
 
 public enum PaymentMethod {
     CASH,

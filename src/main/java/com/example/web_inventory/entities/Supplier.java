@@ -1,6 +1,6 @@
-package com.example.web_inventory.infra.entities;
+package com.example.web_inventory.entities;
 
-import com.example.web_inventory.infra.enums.Category;
+import com.example.web_inventory.enums.Category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

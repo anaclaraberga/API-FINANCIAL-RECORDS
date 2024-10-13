@@ -1,8 +1,8 @@
-package com.example.web_inventory.infra.entities;
+package com.example.web_inventory.entities;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
 
-import com.example.web_inventory.infra.enums.Status;
+import com.example.web_inventory.enums.Status;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
