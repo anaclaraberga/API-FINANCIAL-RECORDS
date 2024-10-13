@@ -1,10 +1,10 @@
-package com.example.web_inventory.domain.repository;
+package com.example.web_inventory.domain.repositories;
 
 import java.util.Optional;
 
 import com.example.web_inventory.domain.entities.CustomerBO;
 
-public interface ICustomerRepository {
+public interface CustomerRepository {
   CustomerBO save(CustomerBO bo);
   Optional<CustomerBO> findById(Long id);
   Optional<CustomerBO> findByEmail(String email);

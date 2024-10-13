@@ -1,6 +1,6 @@
-package com.example.web_inventory.infra.entity;
+package com.example.web_inventory.infra.entities;
 
-import com.example.web_inventory.infra.entity.enums.Category;
+import com.example.web_inventory.infra.enums.Category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +13,7 @@ import lombok.Data;
 @Table(name = "suppliers")
 @Entity(name = "suppliers")
 @Data
-public class SupplierEntity {
+public class Supplier {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

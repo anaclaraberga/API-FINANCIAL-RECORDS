@@ -1,4 +1,4 @@
-package com.example.web_inventory.infra.entity;
+package com.example.web_inventory.infra.entities;
 
 import java.math.BigInteger;
 
@@ -12,16 +12,16 @@ import lombok.Data;
 @Table(name="order-items")
 @Entity(name="order-items")
 @Data
-public class OrderItemEntity {
+public class OrderItem {
     
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private OrderEntity order;
+    private Order order;
 
     @Column(nullable = false)
-    private ProductEntity product;
+    private Product product;
 
     @Column(nullable = false, length = 5)
     private Integer quantity;

@@ -1,8 +1,8 @@
-package com.example.web_inventory.infra.entity;
+package com.example.web_inventory.infra.entities;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
 
-import com.example.web_inventory.infra.entity.enums.Status;
+import com.example.web_inventory.infra.enums.Status;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +15,7 @@ import lombok.Data;
 @Entity(name = "orders")
 @Table(name = "orders")
 @Data
-public class OrderEntity {
+public class Order {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class OrderEntity {
     private DateTimeAtCreation dateTimeAtCreation;
 
     @Column(nullable = false)
-    private CustomerEntity customer;
+    private Customer customer;
 
     @Column(nullable = false)
     private Status status;

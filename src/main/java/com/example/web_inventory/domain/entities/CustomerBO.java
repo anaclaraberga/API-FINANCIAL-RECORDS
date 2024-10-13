@@ -1,5 +1,10 @@
 package com.example.web_inventory.domain.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CustomerBO {
   private Long id;
   private String name;
@@ -25,22 +30,6 @@ public class CustomerBO {
     if (email == null || email.isEmpty() || !email.contains("@")) {
       throw new IllegalArgumentException("Email inválido");
     }
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getPhone() {
-    return phone;
-  }
-
-  public String getEmail() {
-    return email;
   }
 
 }

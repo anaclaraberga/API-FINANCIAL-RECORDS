@@ -1,4 +1,4 @@
-package com.example.web_inventory.infra.entity.enums;
+package com.example.web_inventory.infra.enums;
 
 public enum Status {
     ACTIVE,
