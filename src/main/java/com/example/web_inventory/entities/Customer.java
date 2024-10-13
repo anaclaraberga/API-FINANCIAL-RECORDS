@@ -6,16 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity(name = "customers")
 @Table(name = "customers")
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 public class Customer {
     
     @Id
