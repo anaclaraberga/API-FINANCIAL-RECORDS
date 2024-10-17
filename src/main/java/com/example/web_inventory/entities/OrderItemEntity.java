@@ -1,8 +1,6 @@
 package com.example.web_inventory.entities;
 
-import javax.print.attribute.standard.DateTimeAtCreation;
-
-import com.example.web_inventory.enums.Status;
+import java.math.BigInteger;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,21 +10,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity(name = "orders")
-@Table(name = "orders")
+@Table(name="order-items")
+@Entity(name="order-items")
 @Data
-public class Order {
+public class OrderItemEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, name = "date_time_at_creation")
-    private DateTimeAtCreation dateTimeAtCreation;
+    @Column(nullable = false)
+    private OrderEntity order;
 
     @Column(nullable = false)
-    private Customer customer;
+    private ProductEntity product;
 
-    @Column(nullable = false)
-    private Status status;
+    @Column(nullable = false, length = 5)
+    private Integer quantity;
+
+    @Column(nullable = false, length = 15)
+    private BigInteger unitPrice;
+    
 }

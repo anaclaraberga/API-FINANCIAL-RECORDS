@@ -17,14 +17,14 @@ import lombok.Data;
 @Table(name="transactions")
 @Entity(name="transactions")
 @Data
-public class Transaction {
+public class TransactionEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private Order order;
+    private OrderEntity order;
 
     @Column(nullable = false, name = "date_time_at_creation")
     private DateTimeAtCreation dateTimeAtCreation;
