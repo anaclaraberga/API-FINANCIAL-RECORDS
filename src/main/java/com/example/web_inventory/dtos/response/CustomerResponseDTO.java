@@ -2,9 +2,23 @@ package com.example.web_inventory.dtos.response;
 
 import com.example.web_inventory.entities.CustomerEntity;
 
-public record CustomerResponseDTO(Long id, String name, String nationalRegistry, String phone, String email, String zipCode) {
+import lombok.Data;
+
+@Data
+public class CustomerResponseDTO {
+    private Long id;
+    private String name;
+    private String nationalRegistry;
+    private String email;
+    private String phone;
+    private String zipCode;
 
     public CustomerResponseDTO(CustomerEntity customer) {
-        this(customer.getId(), customer.getName(), customer.getNationalRegistry(), customer.getPhone(), customer.getEmail(), customer.getZipCode());
+        this.id = customer.getId();
+        this.name = customer.getName();
+        this.nationalRegistry = customer.getNationalRegistry();
+        this.email = customer.getEmail();
+        this.phone = customer.getPhone();
+        this.zipCode = customer.getZipCode();
     }
 }

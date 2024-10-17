@@ -1,5 +1,14 @@
 package com.example.web_inventory.dtos.request;
 
-public record CustomerRequestDTO(String name, String nationalRegistry, String phone, String email, String zipCode) {
-    
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CustomerRequestDTO {
+    private String name;
+    private String nationalRegistry;
+    private String phone;
+    private String email;
+    private String zipCode;
 }

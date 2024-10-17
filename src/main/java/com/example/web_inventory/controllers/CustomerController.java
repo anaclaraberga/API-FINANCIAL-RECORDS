@@ -3,6 +3,8 @@ package com.example.web_inventory.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,33 +13,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.web_inventory.dtos.request.CustomerRequestDTO;
 import com.example.web_inventory.dtos.response.CustomerResponseDTO;
 import com.example.web_inventory.entities.CustomerEntity;
-import com.example.web_inventory.repositories.CustomerRepository;
+import com.example.web_inventory.services.CustomerService;
 
 import jakarta.transaction.Transactional;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
 @RestController
 @RequestMapping("/customer")
+@Slf4j
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CustomerController {
 
     @Autowired
-    private CustomerRepository repository;
+    private CustomerService customerService;
 
-    @CrossOrigin(origins="*", allowedHeaders="*")
-    @PostMapping
-    public CustomerEntity createCustomer(@RequestBody CustomerRequestDTO dto) {
-        CustomerEntity customer = new CustomerEntity(dto);
-
-        return repository.save(customer);
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
-    @CrossOrigin(origins="*", allowedHeaders="*")
+    @PostMapping("/customer")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<CustomerResponseDTO> createCustomer(@RequestBody CustomerRequestDTO dto) {
+        CustomerEntity customer = customerService.createCustomer(dto);
+
+        return ResponseEntity.status(201).body(new CustomerResponseDTO(customer));
+    }
+
     @PutMapping("/{id}")
     @Transactional
     public List<CustomerResponseDTO> updateCustomerById(@RequestBody CustomerResponseDTO dto, @PathVariable("id") Long id) {
@@ -45,19 +54,26 @@ public class CustomerController {
         return null;
     }
 
-    @CrossOrigin(origins="*", allowedHeaders="*")
     @GetMapping
-    public List<CustomerResponseDTO> getAllCustomers() {
+    public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers() {
 
-        List<CustomerResponseDTO> customer = repository.findAll().stream().map(CustomerResponseDTO::new).toList();
+        List<CustomerResponseDTO> customers = customerService.listAllCustomers()
+        .stream()
+        .map(CustomerResponseDTO::new)
+        .toList();
 
-        return customer;
+        return ResponseEntity.ok(customers);
     }
 
-    @CrossOrigin(origins="*", allowedHeaders="*")
-    @DeleteMapping("/{id}")
-    public void deleteCustomerById(@PathVariable("id") Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerResponseDTO> getCustomerById(@PathVariable("id") Long id) {
+        return customerService.findCustomerById(id)
+            .map(customer -> ResponseEntity.ok(new CustomerResponseDTO(customer)))
+            .orElse(ResponseEntity.notFound().build());
+    }
 
-        repository.deleteById(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteCustomerById(@PathVariable("id") Long id) {
+        return customerService.deleteById(id);
     }
 }

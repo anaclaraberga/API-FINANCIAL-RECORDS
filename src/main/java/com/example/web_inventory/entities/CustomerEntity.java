@@ -43,10 +43,10 @@ public class CustomerEntity {
     private String zipCode;
 
     public CustomerEntity(CustomerRequestDTO dto) {
-        this.name = dto.name();
-        this.nationalRegistry = dto.nationalRegistry();
-        this.phone = dto.phone();
-        this.email = dto.email();
-        this.zipCode = dto.zipCode();
+        this.name = dto.getName();
+        this.nationalRegistry = dto.getNationalRegistry();
+        this.phone = dto.getPhone();
+        this.email = dto.getEmail();
+        this.zipCode = dto.getZipCode();
     }
 }

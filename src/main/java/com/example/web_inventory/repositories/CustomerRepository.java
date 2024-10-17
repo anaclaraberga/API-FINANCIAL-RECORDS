@@ -7,5 +7,5 @@ import com.example.web_inventory.entities.CustomerEntity;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
- 
+    
 }

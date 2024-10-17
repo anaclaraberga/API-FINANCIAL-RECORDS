@@ -1,22 +1,27 @@
 package com.example.web_inventory.services;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.web_inventory.dtos.request.CustomerRequestDTO;
 import com.example.web_inventory.entities.CustomerEntity;
 import com.example.web_inventory.repositories.CustomerRepository;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CustomerService {
 
+    @Autowired
     private final CustomerRepository repository;
 
-    public CustomerEntity createCustomer(CustomerEntity entity) {
+    public CustomerEntity createCustomer(CustomerRequestDTO dto) {
+        CustomerEntity entity = new CustomerEntity(dto);
         return repository.save(entity);
     }
 
@@ -24,20 +29,18 @@ public class CustomerService {
         return repository.findAll();
     }
 
-    public ResponseEntity<CustomerEntity> findCustomerById(Long id) {
-        return repository.findById(id)
-        .map(customer -> ResponseEntity.ok().body(customer))
-        .orElse(ResponseEntity.notFound().build());
+    public Optional<CustomerEntity> findCustomerById(Long id) {
+        return repository.findById(id);
     }
 
-    public ResponseEntity<CustomerEntity> updateCustomerById(CustomerEntity customer, Long id) {
+    public ResponseEntity<CustomerEntity> updateCustomerById(CustomerRequestDTO dto, Long id) {
         return repository.findById(id)
         .map(customerToUpdate -> {
-            customerToUpdate.setName(customer.getName());
-            customerToUpdate.setNationalRegistry(customer.getNationalRegistry());
-            customerToUpdate.setEmail(customer.getEmail());
-            customerToUpdate.setPhone(customer.getPhone());
-            customerToUpdate.setZipCode(customer.getZipCode());
+            customerToUpdate.setName(dto.getName());
+            customerToUpdate.setNationalRegistry(dto.getNationalRegistry());
+            customerToUpdate.setEmail(dto.getEmail());
+            customerToUpdate.setPhone(dto.getPhone());
+            customerToUpdate.setZipCode(dto.getZipCode());
             CustomerEntity updated = repository.save(customerToUpdate);
             return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
@@ -45,9 +48,9 @@ public class CustomerService {
 
     public ResponseEntity<Object> deleteById(Long id) {
         return repository.findById(id)
-        .map(taskToDelete -> {
-            repository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        }).orElse(ResponseEntity.notFound().build());
+            .map(customerToDelete -> {
+                repository.deleteById(id);
+                return ResponseEntity.noContent().build();
+            }).orElse(ResponseEntity.notFound().build());
     }
 }
