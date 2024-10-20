@@ -1,5 +1,7 @@
 package com.example.web_inventory.entities;
 
+import java.io.Serializable;
+
 import javax.print.attribute.standard.DateTimeAtCreation;
 
 import com.example.web_inventory.enums.Status;
@@ -12,10 +14,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity(name = "orders")
+@Entity
 @Table(name = "orders")
 @Data
-public class OrderEntity {
+public class OrderEntity implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
