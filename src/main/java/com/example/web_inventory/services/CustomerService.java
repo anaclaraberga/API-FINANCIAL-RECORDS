@@ -39,23 +39,18 @@ public class CustomerService {
         return repository.findAll();
     }
 
-    // public Optional<CustomerEntity> findCustomerById(Long id) {
-    //
-    //     return repository.findById(id);
-    // }
-
-    // public ResponseEntity<CustomerEntity> updateCustomerById(CustomerRequestDTO dto, Long id) {
-    //     return repository.findById(id)
-    //     .map(customerToUpdate -> {
-    //         customerToUpdate.setName(dto.getName());
-    //         customerToUpdate.setNationalRegistry(dto.getNationalRegistry());
-    //         customerToUpdate.setEmail(dto.getEmail());
-    //         customerToUpdate.setPhone(dto.getPhone());
-    //         customerToUpdate.setZipCode(dto.getZipCode());
-    //         CustomerEntity updated = repository.save(customerToUpdate);
-    //         return ResponseEntity.ok().body(updated);
-    //     }).orElse(ResponseEntity.notFound().build());
-    // }
+    public ResponseEntity<CustomerEntity> updateCustomerById(CustomerRequestDTO dto, Long id) {
+        return repository.findById(id)
+        .map(customerToUpdate -> {
+            customerToUpdate.setName(dto.getName());
+            customerToUpdate.setNationalRegistry(dto.getNationalRegistry());
+            customerToUpdate.setEmail(dto.getEmail());
+            customerToUpdate.setPhone(dto.getPhone());
+            customerToUpdate.setZipCode(dto.getZipCode());
+            CustomerEntity updated = repository.save(customerToUpdate);
+            return ResponseEntity.ok().body(updated);
+        }).orElse(ResponseEntity.notFound().build());
+    }
 
     public ResponseEntity<Object> deleteById(Long id) {
         return repository.findById(id)

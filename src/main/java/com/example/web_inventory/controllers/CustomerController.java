@@ -1,5 +1,7 @@
 package com.example.web_inventory.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -31,48 +34,46 @@ public class CustomerController {
     CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
+
         this.customerService = customerService;
     }
 
-    @PostMapping("/create")
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<CustomerResponseDTO> createCustomer(@RequestBody CustomerRequestDTO dto) {
+
         CustomerEntity customer = customerService.createCustomer(dto);
 
         return ResponseEntity.status(201).body(new CustomerResponseDTO(customer));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerEntity> findCustomerById(@RequestBody CustomerEntity obj, @PathVariable Long id) {
+    public ResponseEntity<CustomerEntity> findCustomerById(@PathVariable Long id) {
 
-        obj = this.customerService.findCustomerById(id);
-        return ResponseEntity.ok().body(obj);
+        CustomerEntity entity = this.customerService.findCustomerById(id);
+
+        return ResponseEntity.ok(entity);
     }
 
-    // @GetMapping("/get-all")
-    // @ResponseStatus(HttpStatus.OK)
-    // public List<CustomerEntity> getAllCustomers() {
-    //     List<CustomerEntity> customer = customerService.getAllCustomers();
+    @GetMapping("/")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CustomerEntity> getAllCustomers() {
+
+        List<CustomerEntity> customer = customerService.getAllCustomers();
         
-    //     return customer;
-    // }
+        return customer;
+    }
 
-    // @GetMapping("/{id}")
-    // @Transactional
-    // public Optional<CustomerEntity> getCustomerById(@RequestBody CustomerResponseDTO dto, @PathVariable(value = "id") Long id) {
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<CustomerEntity> updateTaskById(@PathVariable(value = "id") Long id, @RequestBody CustomerRequestDTO dto) {
 
-    //     return customerService.findCustomerById(id);
-    // }
-
-    // @GetMapping("/{id}")
-    // public ResponseEntity<CustomerResponseDTO> getCustomerById(@PathVariable("id") Long id) {
-    //     return customerService.findCustomerById(id)
-    //         .map(customer -> ResponseEntity.ok(new CustomerResponseDTO(customer)))
-    //         .orElse(ResponseEntity.notFound().build());
-    // }
+        return customerService.updateCustomerById(dto, id);
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteCustomerById(@PathVariable("id") Long id) {
+
         return customerService.deleteById(id);
     }
 
