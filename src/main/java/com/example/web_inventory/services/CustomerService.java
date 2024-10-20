@@ -40,22 +40,21 @@ public class CustomerService {
     }
 
     public ResponseEntity<CustomerEntity> updateCustomerById(CustomerRequestDTO dto, Long id) {
-
         return repository.findById(id)
-        .map(update -> {
-            update.setName(dto.getName());
-            update.setNationalRegistry(dto.getNationalRegistry());
-            update.setEmail(dto.getEmail());
-            update.setPhone(dto.getPhone());
-            update.setZipCode(dto.getZipCode());
-            CustomerEntity updated = repository.save(update);
+        .map(customerToUpdate -> {
+            customerToUpdate.setName(dto.getName());
+            customerToUpdate.setNationalRegistry(dto.getNationalRegistry());
+            customerToUpdate.setEmail(dto.getEmail());
+            customerToUpdate.setPhone(dto.getPhone());
+            customerToUpdate.setZipCode(dto.getZipCode());
+            CustomerEntity updated = repository.save(customerToUpdate);
             return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<Object> deleteCustomerById(Long id) {
+    public ResponseEntity<Object> deleteById(Long id) {
         return repository.findById(id)
-            .map(delete -> {
+            .map(customerToDelete -> {
                 repository.deleteById(id);
                 return ResponseEntity.noContent().build();
             }).orElse(ResponseEntity.notFound().build());
