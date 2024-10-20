@@ -1,5 +1,6 @@
 package com.example.web_inventory.entities;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
@@ -16,9 +17,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Table(name="products")
-@Entity(name="products")
+@Entity
 @Data
-public class ProductEntity {
+public class ProductEntity implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

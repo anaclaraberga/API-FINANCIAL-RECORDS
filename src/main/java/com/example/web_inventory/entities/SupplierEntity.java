@@ -1,5 +1,7 @@
 package com.example.web_inventory.entities;
 
+import java.io.Serializable;
+
 import com.example.web_inventory.enums.Category;
 
 import jakarta.persistence.Column;
@@ -11,9 +13,9 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Table(name = "suppliers")
-@Entity(name = "suppliers")
+@Entity
 @Data
-public class SupplierEntity {
+public class SupplierEntity implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
