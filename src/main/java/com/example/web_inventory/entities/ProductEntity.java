@@ -5,7 +5,6 @@ import java.math.BigInteger;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
 
-import com.example.web_inventory.enums.Category;
 import com.example.web_inventory.enums.Status;
 
 import jakarta.persistence.Column;
@@ -35,7 +34,7 @@ public class ProductEntity implements Serializable {
     private BigInteger price;
 
     @Column(nullable = false)
-    private Category category;
+    private String category;
 
     @Column(nullable = false)
     private Status status;
