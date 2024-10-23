@@ -5,6 +5,7 @@ import java.math.BigInteger;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
 
+import com.example.web_inventory.dtos.request.ProductRequestDTO;
 import com.example.web_inventory.enums.Status;
 
 import jakarta.persistence.Column;
@@ -39,4 +40,11 @@ public class ProductEntity implements Serializable {
     @Column(nullable = false)
     private Status status;
     
+    public ProductEntity(ProductRequestDTO dto) {  
+        this.dateTimeAtCreation = dto.getDateTimeAtCreation();
+        this.description = dto.getDescription();
+        this.price = dto.getPrice();
+        this.category = dto.getCategory();
+        this.status = dto.getStatus();
+    }
 }
