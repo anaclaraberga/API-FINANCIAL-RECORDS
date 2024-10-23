@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
 
+import com.example.web_inventory.enums.Status;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,4 +17,13 @@ public class ProductRequestDTO {
     private BigInteger price;
     private String category;
     private String status;
+
+    public Status getStatus() {
+
+        return Status.valueOf(this.status);
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
