@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductRequestDTO {
+    
     private String description;
     private BigInteger price;
     private String category;

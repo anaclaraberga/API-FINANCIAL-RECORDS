@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.web_inventory.entities.SupplierEntity;
 
 @Repository
-public interface SupplierRepository extends JpaRepository<SupplierEntity, Long> {
+public interface SupplierRepository extends JpaRepository<SupplierEntity, Long>{
     
 }
