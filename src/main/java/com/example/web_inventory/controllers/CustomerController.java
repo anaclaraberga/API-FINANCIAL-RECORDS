@@ -38,7 +38,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<CustomerResponseDTO> createCustomer(@RequestBody CustomerRequestDTO dto) {
 
@@ -55,7 +55,7 @@ public class CustomerController {
         return ResponseEntity.ok(entity);
     }
 
-    @GetMapping("/")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CustomerEntity> getAllCustomers() {
 
@@ -76,5 +76,4 @@ public class CustomerController {
 
         return customerService.deleteById(id);
     }
-
 }

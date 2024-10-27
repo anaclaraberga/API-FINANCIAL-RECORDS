@@ -33,7 +33,7 @@ public class ProductService {
         return customer.orElseThrow(() -> new ObjectNotFoundException("Produto não encontrado! Id: " + id + "Tipo: " + ProductEntity.class.getName(), customer));
     }
 
-    public List<ProductEntity> getAllCustomers() {
+    public List<ProductEntity> getAllProducts() {
 
         return repository.findAll();
     }

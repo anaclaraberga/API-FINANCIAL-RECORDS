@@ -1,8 +1,7 @@
 package com.example.web_inventory.dtos.response;
 
 import java.math.BigInteger;
-
-import javax.print.attribute.standard.DateTimeAtCreation;
+import java.time.LocalDateTime;
 
 import com.example.web_inventory.entities.ProductEntity;
 import com.example.web_inventory.enums.Status;
@@ -15,7 +14,7 @@ import lombok.Setter;
 public class ProductResponseDTO {
 
     private Long id;
-    private DateTimeAtCreation dateTimeAtCreation;
+    private LocalDateTime dateTimeAtCreation;
     private String description;
     private BigInteger price;
     private String category;
