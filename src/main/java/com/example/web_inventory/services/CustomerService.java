@@ -54,7 +54,7 @@ public class CustomerService {
 
     public ResponseEntity<Object> deleteById(Long id) {
         return repository.findById(id)
-            .map(customerToDelete -> {
+            .map(delete -> {
                 repository.deleteById(id);
                 return ResponseEntity.noContent().build();
             }).orElse(ResponseEntity.notFound().build());
