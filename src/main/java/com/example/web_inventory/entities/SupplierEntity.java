@@ -29,14 +29,14 @@ public class SupplierEntity implements Serializable {
     private String companyName;
 
     @Column(nullable = false, length = 14)
-    private String cnpj;
+    private String contact;
 
     @Column(nullable = false)
-    private String category;
+    private String address;
 
     public SupplierEntity(SupplierRequestDTO dto) {
         this.companyName = dto.getCompanyName();
-        this.cnpj = dto.getCnpj();
-        this.category = dto.getCategory();
+        this.contact = dto.getContact();
+        this.address = dto.getAddress();
     }
 }

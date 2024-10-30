@@ -44,8 +44,8 @@ public class SupplierService {
         return repository.findById(id)
         .map(update -> {
             update.setCompanyName(dto.getCompanyName());
-            update.setCnpj(dto.getCnpj());
-            update.setCategory(dto.getCategory());
+            update.setContact(dto.getContact());
+            update.setAddress(dto.getAddress());
             SupplierEntity updated = repository.save(update);
             return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());

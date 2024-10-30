@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class SupplierRequestDTO {
     private String companyName;
-    private String cnpj;
-    private String category;
+    private String contact;
+    private String address;
 }

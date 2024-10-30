@@ -9,13 +9,13 @@ public class SupplierResponseDTO {
     
     private Long id;
     private String companyName;
-    private String cnpj;
-    private String category;
+    private String contact;
+    private String address;
 
     public SupplierResponseDTO(SupplierEntity entity) {
         this.id = entity.getId();
         this.companyName = entity.getCompanyName();
-        this.cnpj = entity.getCnpj();
-        this.category = entity.getCategory();
+        this.contact = entity.getContact();
+        this.address = entity.getAddress();
     }
 }
