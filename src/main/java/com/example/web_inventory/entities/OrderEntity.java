@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.print.attribute.standard.DateTimeAtCreation;
 
+import com.example.web_inventory.dtos.request.TransactionRequestDTO;
 import com.example.web_inventory.enums.Status;
 
 import jakarta.persistence.Column;
@@ -31,4 +32,8 @@ public class OrderEntity implements Serializable {
 
     @Column(nullable = false)
     private Status status;
+
+    public OrderEntity(TransactionRequestDTO dto) {
+        this.id = dto.getOrderId().id;
+    }
 }

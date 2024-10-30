@@ -41,13 +41,13 @@ public class CustomerService {
 
     public ResponseEntity<CustomerEntity> updateCustomerById(CustomerRequestDTO dto, Long id) {
         return repository.findById(id)
-        .map(customerToUpdate -> {
-            customerToUpdate.setName(dto.getName());
-            customerToUpdate.setNationalRegistry(dto.getNationalRegistry());
-            customerToUpdate.setEmail(dto.getEmail());
-            customerToUpdate.setPhone(dto.getPhone());
-            customerToUpdate.setZipCode(dto.getZipCode());
-            CustomerEntity updated = repository.save(customerToUpdate);
+        .map( update -> {
+            update.setName(dto.getName());
+            update.setNationalRegistry(dto.getNationalRegistry());
+            update.setEmail(dto.getEmail());
+            update.setPhone(dto.getPhone());
+            update.setZipCode(dto.getZipCode());
+            CustomerEntity updated = repository.save(update);
             return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());
     }
