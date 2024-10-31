@@ -42,9 +42,8 @@ public class TransactionService {
     public ResponseEntity<TransactionEntity> updateTransactionById(TransactionRequestDTO dto, Long id) {
         return repository.findById(id)
         .map(update -> {
-            update.setAmount(dto.getAmount());
-            update.setPaymentMethod(dto.getPaymentMethod());
-            update.setOrderId(dto.getOrderId());
+            update.setValue(dto.getValue());
+            update.setTransactionType(dto.getTransactionType());
             TransactionEntity updated = repository.save(update);
             return ResponseEntity.ok().body(updated);
         }).orElse(ResponseEntity.notFound().build());

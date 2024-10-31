@@ -1,9 +1,9 @@
 package com.example.web_inventory.dtos.request;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 
-import com.example.web_inventory.entities.OrderEntity;
-import com.example.web_inventory.enums.PaymentMethod;
+import com.example.web_inventory.enums.TransactionType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,24 +13,17 @@ import lombok.Setter;
 public class TransactionRequestDTO {
 
     private Long orderId;
-    private BigInteger amount;
-    private String paymentMethod;
+    private Long productId;
+    private LocalDateTime dateTimeAtCreation;
+    private BigInteger value;
+    private String transactionType;
 
-    public PaymentMethod getPaymentMethod() {
+    public TransactionType getTransactionType() {
 
-        return PaymentMethod.valueOf(this.paymentMethod);
+        return TransactionType.valueOf(this.transactionType);
     }
 
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public OrderEntity getOrderId() {
-
-        return OrderEntity.class.cast(this.orderId);
-    }
-
-    public void setOrderId(OrderEntity order) {
-        this.orderId = order.getId();
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 }
