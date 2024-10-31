@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.web_inventory.dtos.request.ProductRequestDTO;
 import com.example.web_inventory.entities.ProductEntity;
+import com.example.web_inventory.entities.SupplierEntity;
 import com.example.web_inventory.repositories.ProductRepository;
+import com.example.web_inventory.repositories.SupplierRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,8 +23,16 @@ public class ProductService {
     @Autowired
     private ProductRepository repository;
 
+    @Autowired
+    private SupplierRepository supplierRepository;
+
     public ProductEntity createProduct (ProductRequestDTO dto) {
+        SupplierEntity supplier = supplierRepository.findById(dto.getSupplierId())
+            .orElseThrow(() -> new RuntimeException("Supplier not found."));
+        
         ProductEntity entity = new ProductEntity(dto);
+        
+        entity.setSupplierId(supplier);
 
         return repository.save(entity);
     }
@@ -41,10 +51,11 @@ public class ProductService {
     public ResponseEntity<ProductEntity> updateProductById(ProductRequestDTO dto, Long id) {
         return repository.findById(id)
         .map(update -> {
+            update.setName(dto.getName());
             update.setDescription(dto.getDescription());
             update.setPrice(dto.getPrice());
-            update.setStatus(dto.getStatus());
-            update.setCategory(dto.getCategory());
+            update.setQuantity(dto.getQuantity());
+            update.setImage(dto.getImage());
 
             ProductEntity updated = repository.save(update);
             return ResponseEntity.ok().body(updated);

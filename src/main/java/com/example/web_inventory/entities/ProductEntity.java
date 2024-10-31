@@ -2,16 +2,16 @@ package com.example.web_inventory.entities;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.time.LocalDateTime;
 
 import com.example.web_inventory.dtos.request.ProductRequestDTO;
-import com.example.web_inventory.enums.Status;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,26 +28,30 @@ public class ProductEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, name = "date_time_at_creation")
-    private LocalDateTime dateTimeAtCreation;
+    @Column(nullable = false, length = 255)
+    private String name;
 
-    @Column(nullable = false, length = 355)
+    @Column(nullable = false, length = 400)
     private String description;
 
     @Column(nullable = false)
     private BigInteger price;
 
     @Column(nullable = false)
-    private String category;
+    private int quantity;
 
     @Column(nullable = false)
-    private Status status;
+    private String image;
+
+    @ManyToOne
+    @JoinColumn(name = "suppliers_id")
+    private SupplierEntity supplierId;
     
-    public ProductEntity(ProductRequestDTO dto) {  
-        this.dateTimeAtCreation = LocalDateTime.now();
+    public ProductEntity(ProductRequestDTO dto) {
+        this.name = dto.getName();
         this.description = dto.getDescription();
         this.price = dto.getPrice();
-        this.category = dto.getCategory();
-        this.status = dto.getStatus();
+        this.quantity = dto.getQuantity();
+        this.image = dto.getImage();
     }
 }
