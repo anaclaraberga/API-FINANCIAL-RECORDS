@@ -1,10 +1,8 @@
 package com.example.web_inventory.dtos.response;
 
 import java.math.BigInteger;
-import java.time.LocalDateTime;
 
 import com.example.web_inventory.entities.ProductEntity;
-import com.example.web_inventory.enums.Status;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,18 +12,20 @@ import lombok.Setter;
 public class ProductResponseDTO {
 
     private Long id;
-    private LocalDateTime dateTimeAtCreation;
+    private String name;
     private String description;
     private BigInteger price;
-    private String category;
-    private Status status;
+    private int quantity;
+    private String image;
+    private Long supplierId;
 
     public ProductResponseDTO(ProductEntity entity) {
         this.id = entity.getId();
-        this.dateTimeAtCreation = entity.getDateTimeAtCreation();
+        this.name = entity.getName();
         this.description = entity.getDescription();
         this.price = entity.getPrice();
-        this.category = entity.getCategory();
-        this.status = entity.getStatus();
+        this.quantity = entity.getQuantity();
+        this.image = entity.getImage();
+        this.supplierId = entity.getSupplierId().getId();
     }
 }
