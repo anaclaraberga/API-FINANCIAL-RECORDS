@@ -38,9 +38,9 @@ public class ProductService {
     }
 
     public ProductEntity findProductById (Long id) {
-        Optional<ProductEntity> customer = this.repository.findById(id);
+        Optional<ProductEntity> product = this.repository.findById(id);
 
-        return customer.orElseThrow(() -> new ObjectNotFoundException("Produto não encontrado! Id: " + id + "Tipo: " + ProductEntity.class.getName(), customer));
+        return product.orElseThrow(() -> new ObjectNotFoundException("Produto não encontrado! Id: " + id + "Tipo: " + ProductEntity.class.getName(), product));
     }
 
     public List<ProductEntity> getAllProducts() {
