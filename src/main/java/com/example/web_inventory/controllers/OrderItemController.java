@@ -24,7 +24,7 @@ import com.example.web_inventory.services.OrderItemService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/order-item")
 @Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OrderItemController {
