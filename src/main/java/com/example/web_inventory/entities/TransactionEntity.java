@@ -13,7 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -35,7 +35,7 @@ public class TransactionEntity implements Serializable{
     @JoinColumn(name = "orders_id", nullable = false)
     private OrderEntity orderId;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "products_id", nullable = false)
     private ProductEntity productId;
 
@@ -49,7 +49,7 @@ public class TransactionEntity implements Serializable{
     private TransactionType transactionType;
 
     public TransactionEntity(TransactionRequestDTO dto) {
-        this.dateTimeAtCreation = dto.getDateTimeAtCreation();
+        this.dateTimeAtCreation = LocalDateTime.now();
         this.value = dto.getValue();
         this.transactionType = dto.getTransactionType();
     }
