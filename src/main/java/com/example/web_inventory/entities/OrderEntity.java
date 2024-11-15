@@ -29,7 +29,7 @@ public class OrderEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, name = "date_time_at_creation")
+    @Column(nullable = true, name = "date_time_at_creation")
     private LocalDateTime dateTimeAtCreation;
 
     @ManyToOne
@@ -39,8 +39,18 @@ public class OrderEntity implements Serializable {
     @Column(nullable = false)
     private Status status;
 
+    public LocalDateTime getDateTimeAtCreation() {
+
+        this.dateTimeAtCreation = LocalDateTime.now();
+
+        return dateTimeAtCreation;
+    }
+
+    public void setDateTimeAtCreation(LocalDateTime dateTimeAtCreation) {
+        this.dateTimeAtCreation = dateTimeAtCreation;
+    }
+
     public OrderEntity(OrderRequestDTO dto) {
-        this.dateTimeAtCreation = dto.getDateTimeAtCreation();
         this.status = dto.getStatus();
     }
 }
