@@ -9,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.web_inventory.dtos.request.OrderItemRequestDTO;
+import com.example.web_inventory.entities.OrderEntity;
 import com.example.web_inventory.entities.OrderItemEntity;
 import com.example.web_inventory.entities.ProductEntity;
 import com.example.web_inventory.repositories.OrderItemRepository;
+import com.example.web_inventory.repositories.OrderRepository;
 import com.example.web_inventory.repositories.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -26,13 +28,20 @@ public class OrderItemService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private OrderRepository orderRepository;
+
     public OrderItemEntity createOrderItem(OrderItemRequestDTO dto) {
-        ProductEntity product = productRepository.findById(dto.getOrderId())
+        OrderEntity order = orderRepository.findById(dto.getOrderId())
+            .orElseThrow(() -> new RuntimeException("Order not found."));
+
+        ProductEntity product = productRepository.findById(dto.getProductId())
             .orElseThrow(() -> new RuntimeException("Product not found."));
         
         OrderItemEntity entity = new OrderItemEntity(dto);
 
         entity.setProductId(product);
+        entity.setOrderId(order);
 
         return repository.save(entity);
     }

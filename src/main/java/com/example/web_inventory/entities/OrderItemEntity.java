@@ -13,11 +13,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name="order_items")
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderItemEntity implements Serializable {
     
     @Id
