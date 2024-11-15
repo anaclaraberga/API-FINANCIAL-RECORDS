@@ -16,20 +16,14 @@ public class TransactionResponseDTO {
     private Long productId;
     private LocalDateTime dateTimeAtCreation;
     private BigInteger value;
-    private String transactionType;
-
-    public TransactionType getTransactionType() {
-
-        return TransactionType.valueOf(this.transactionType);
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
+    private TransactionType transactionType;
 
     public TransactionResponseDTO(TransactionEntity entity) {
         this.id = entity.getId();
         this.dateTimeAtCreation = entity.getDateTimeAtCreation();
         this.value = entity.getValue();
+        this.transactionType = entity.getTransactionType();
+        this.orderId = entity.getOrderId().getId();
+        this.productId = entity.getProductId().getId();
     }
 }

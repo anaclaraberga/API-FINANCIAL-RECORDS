@@ -9,7 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.web_inventory.dtos.request.TransactionRequestDTO;
+import com.example.web_inventory.entities.OrderEntity;
+import com.example.web_inventory.entities.ProductEntity;
 import com.example.web_inventory.entities.TransactionEntity;
+import com.example.web_inventory.repositories.OrderRepository;
+import com.example.web_inventory.repositories.ProductRepository;
 import com.example.web_inventory.repositories.TransactionRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -21,8 +25,27 @@ public class TransactionService {
     @Autowired
     private TransactionRepository repository;
 
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
     public TransactionEntity createTransaction(TransactionRequestDTO dto) {
+        OrderEntity order = orderRepository.findById(dto.getOrderId())
+            .orElseThrow(() -> new RuntimeException(
+                "Order not found."
+            ));
+
+        ProductEntity product = productRepository.findById(dto.getProductId())
+            .orElseThrow(() -> new RuntimeException(
+                "Product not found."
+            ));
+
         TransactionEntity entity = new TransactionEntity(dto);
+
+        entity.setOrderId(order);
+        entity.setProductId(product);
 
         return repository.save(entity);
     }

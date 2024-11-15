@@ -13,7 +13,6 @@ public class OrderRequestDTO {
     private String status;
 
     public Status getStatus() {
-
         return Status.valueOf(this.status);
     }
 
