@@ -35,7 +35,6 @@ public class SupplierService {
     }
 
     public List<SupplierEntity> getAllSuppliers() {
-
         return repository.findAll();
     }
 

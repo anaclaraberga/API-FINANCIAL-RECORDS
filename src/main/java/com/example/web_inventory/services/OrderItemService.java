@@ -53,7 +53,6 @@ public class OrderItemService {
     }
 
     public List<OrderItemEntity> getAllOrderItems() {
-
         return repository.findAll();
     }
 

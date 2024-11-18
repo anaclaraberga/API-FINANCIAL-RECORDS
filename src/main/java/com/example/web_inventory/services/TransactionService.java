@@ -58,7 +58,6 @@ public class TransactionService {
     }
 
     public List<TransactionEntity> getAllTransactions() {
-
         return repository.findAll();
     }
 

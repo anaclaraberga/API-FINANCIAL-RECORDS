@@ -35,7 +35,6 @@ public class CustomerService {
     }
 
     public List<CustomerEntity> getAllCustomers() {
-
         return repository.findAll();
     }
 

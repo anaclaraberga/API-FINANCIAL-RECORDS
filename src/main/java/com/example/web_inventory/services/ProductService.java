@@ -1,5 +1,6 @@
 package com.example.web_inventory.services;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,8 +45,19 @@ public class ProductService {
     }
 
     public List<ProductEntity> getAllProducts() {
-
         return repository.findAll();
+    }
+
+    public List<ProductEntity> getProductByName(String name) {
+        return repository.findByProductName(name);
+    }
+
+    public List<ProductEntity> getProductBySupplier(String supplierName) {
+        return repository.findBySupplier(supplierName);
+    }
+
+    public List<ProductEntity> getProductByPrice(BigInteger price) {
+        return repository.findByPrice(price);
     }
 
     public ResponseEntity<ProductEntity> updateProductById(ProductRequestDTO dto, Long id) {

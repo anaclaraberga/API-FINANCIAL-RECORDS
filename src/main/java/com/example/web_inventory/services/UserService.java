@@ -35,7 +35,6 @@ public class UserService {
     }
 
     public List<UserEntity> getAllUsers() {
-
         return repository.findAll();
     }
 

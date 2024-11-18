@@ -48,7 +48,6 @@ public class OrderService {
     }
 
     public List<OrderEntity> getAllOrders() {
-
         return repository.findAll();
     }
 
