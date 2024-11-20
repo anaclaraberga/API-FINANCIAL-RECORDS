@@ -1,5 +1,6 @@
 package com.example.web_inventory.dtos.response;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.example.web_inventory.entities.OrderEntity;
@@ -15,11 +16,13 @@ public class OrderResponseDTO {
     private LocalDateTime dateTimeAtCreation;
     private Long customerId;
     private Status status;
+    private BigDecimal totalValue;
 
     public OrderResponseDTO(OrderEntity entity) {
         this.id = entity.getId();
         this.dateTimeAtCreation = entity.getDateTimeAtCreation();
         this.customerId = entity.getCustomerId().getId();
         this.status = entity.getStatus();
+        this.totalValue = entity.getTotalValue();
     }
 }

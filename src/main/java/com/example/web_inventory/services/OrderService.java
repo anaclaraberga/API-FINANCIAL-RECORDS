@@ -56,6 +56,8 @@ public class OrderService {
         .map(update -> {
             update.setDateTimeAtCreation(LocalDateTime.now());
             update.setStatus(dto.getStatus());
+            update.setTotalValue(dto.getTotalValue());
+
             OrderEntity updated = repository.save(update);
 
             return ResponseEntity.ok().body(updated);

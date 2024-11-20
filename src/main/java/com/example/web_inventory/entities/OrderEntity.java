@@ -1,6 +1,7 @@
 package com.example.web_inventory.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.example.web_inventory.dtos.request.OrderRequestDTO;
@@ -32,6 +33,9 @@ public class OrderEntity implements Serializable {
     @Column(nullable = true, name = "date_time_at_creation")
     private LocalDateTime dateTimeAtCreation;
 
+    @Column(nullable = false, name = "total_value")
+    private BigDecimal totalValue;
+
     @ManyToOne
     @JoinColumn(name = "customers_id", nullable = false)
     private CustomerEntity customerId;
@@ -52,5 +56,6 @@ public class OrderEntity implements Serializable {
 
     public OrderEntity(OrderRequestDTO dto) {
         this.status = dto.getStatus();
+        this.totalValue = dto.getTotalValue();
     }
 }
