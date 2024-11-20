@@ -30,9 +30,9 @@ public class ProductService {
     public ProductEntity createProduct (ProductRequestDTO dto) {
         SupplierEntity supplier = supplierRepository.findById(dto.getSupplierId())
             .orElseThrow(() -> new RuntimeException("Supplier not found."));
-        
+
         ProductEntity entity = new ProductEntity(dto);
-        
+
         entity.setSupplierId(supplier);
 
         return repository.save(entity);
@@ -49,11 +49,11 @@ public class ProductService {
     }
 
     public List<ProductEntity> getProductByName(String name) {
-        return repository.findByProductName(name);
+        return repository.findByName(name);
     }
 
-    public List<ProductEntity> getProductBySupplier(String supplierName) {
-        return repository.findBySupplier(supplierName);
+    public List<ProductEntity> getProductBySupplierId(Long id) {
+        return repository.findBySupplierId(id);
     }
 
     public List<ProductEntity> getProductByPrice(BigInteger price) {
