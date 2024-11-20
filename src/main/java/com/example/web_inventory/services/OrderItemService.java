@@ -47,9 +47,18 @@ public class OrderItemService {
     }
 
     public OrderItemEntity findOrderItemById (Long id) {
-        Optional<OrderItemEntity> product = this.repository.findById(id);
+        Optional<OrderItemEntity> orderItem = this.repository.findById(id);
 
-        return product.orElseThrow(() -> new ObjectNotFoundException("Itens de pedido" + id + "Tipo: " + OrderItemEntity.class.getName(), product));
+        return orderItem.orElseThrow(() -> new ObjectNotFoundException("Itens de pedido" + id + "Tipo: " + OrderItemEntity.class.getName(), orderItem));
+    }
+    
+    public List<OrderItemEntity> findByOrderId (Long orderId) {
+        OrderEntity orderEntity = this.orderRepository.findById(orderId)
+            .orElseThrow(() -> new ObjectNotFoundException("Pedido não encontrado para o ID: " + orderId + OrderItemEntity.class.getName(), orderId));
+
+        List<OrderItemEntity> entity = this.repository.findByOrderId(orderEntity);
+
+        return entity;
     }
 
     public List<OrderItemEntity> getAllOrderItems() {

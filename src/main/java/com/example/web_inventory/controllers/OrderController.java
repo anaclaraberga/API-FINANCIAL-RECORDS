@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.web_inventory.dtos.request.OrderRequestDTO;
 import com.example.web_inventory.dtos.response.OrderResponseDTO;
 import com.example.web_inventory.entities.OrderEntity;
+import com.example.web_inventory.entities.OrderItemEntity;
+import com.example.web_inventory.services.OrderItemService;
 import com.example.web_inventory.services.OrderService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +33,9 @@ public class OrderController {
     
     @Autowired
     OrderService orderService;
+
+    @Autowired
+    OrderItemService orderItemService;
 
     public OrderController(OrderService orderService) {
 
@@ -47,11 +52,15 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderEntity> findOrderById(@PathVariable Long id) {
+    public ResponseEntity<List<OrderItemEntity>> findOrderById(@PathVariable Long id) {
 
         OrderEntity entity = this.orderService.findOrderById(id);
 
-        return ResponseEntity.ok(entity);
+        List<OrderItemEntity> orderItems = this.orderItemService.findByOrderId(id);
+
+        ResponseEntity.ok(entity);
+
+        return ResponseEntity.ok(orderItems);
     }
 
     @GetMapping
