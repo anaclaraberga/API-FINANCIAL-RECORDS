@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.web_inventory.dtos.request.OrderRequestDTO;
 import com.example.web_inventory.dtos.response.OrderResponseDTO;
 import com.example.web_inventory.entities.OrderEntity;
-import com.example.web_inventory.services.OrderItemService;
 import com.example.web_inventory.services.OrderService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,9 +31,6 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
-
-    @Autowired
-    OrderItemService orderItemService;
 
     public OrderController(OrderService orderService) {
 

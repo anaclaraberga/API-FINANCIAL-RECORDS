@@ -44,7 +44,7 @@ public class ProductEntity implements Serializable {
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "suppliers_id")
+    @JoinColumn(name = "suppliers_id", referencedColumnName = "id")
     private SupplierEntity supplierId;
     
     public ProductEntity(ProductRequestDTO dto) {

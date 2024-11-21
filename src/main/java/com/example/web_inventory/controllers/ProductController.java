@@ -26,6 +26,7 @@ import com.example.web_inventory.repositories.ProductRepository;
 import com.example.web_inventory.services.ProductService;
 import com.example.web_inventory.utils.UploadUtil;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -102,6 +103,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity<Object> deleteProductById(@PathVariable("id") Long id) {
 
         return productService.deleteById(id);

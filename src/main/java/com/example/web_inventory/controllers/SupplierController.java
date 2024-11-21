@@ -1,6 +1,7 @@
 package com.example.web_inventory.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,6 +52,19 @@ public class SupplierController {
         SupplierEntity entity = this.supplierService.findSupplierById(id);
         
         return ResponseEntity.ok(entity);
+    }
+
+    @PostMapping("/search")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<SupplierEntity> findSupplierByCompanyName(@RequestBody SupplierRequestDTO dto) {
+
+        Optional<SupplierEntity> entity = supplierService.findSupplierByNameOrContact(dto.getCompanyName(), dto.getContact());
+        
+        if (entity.isPresent()) {
+            return ResponseEntity.ok(entity.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping
