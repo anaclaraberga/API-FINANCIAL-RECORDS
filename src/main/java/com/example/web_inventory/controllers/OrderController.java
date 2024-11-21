@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.web_inventory.dtos.request.OrderRequestDTO;
 import com.example.web_inventory.dtos.response.OrderResponseDTO;
 import com.example.web_inventory.entities.OrderEntity;
-import com.example.web_inventory.entities.OrderItemEntity;
 import com.example.web_inventory.services.OrderItemService;
 import com.example.web_inventory.services.OrderService;
 
@@ -30,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OrderController {
-    
+
     @Autowired
     OrderService orderService;
 
@@ -46,22 +45,17 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<OrderResponseDTO> createOrder(@RequestBody OrderRequestDTO dto) {
 
-        OrderEntity order = orderService.createOrder(dto);
+        OrderResponseDTO order = orderService.createOrder(dto);
 
-        return ResponseEntity.status(201).body(new OrderResponseDTO(order));
+        return ResponseEntity.status(201).body(order);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponseDTO> findOrderById(@PathVariable Long id) {
 
-        OrderEntity entity = this.orderService.findOrderById(id);
+        OrderResponseDTO entity = this.orderService.findOrderById(id);
 
-        List<OrderItemEntity> orderItems = this.orderItemService.findByOrderId(id);
-
-        OrderResponseDTO dto = new OrderResponseDTO(entity);
-        dto.setItems(orderItems);
-
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(entity);
     }
 
     @GetMapping
