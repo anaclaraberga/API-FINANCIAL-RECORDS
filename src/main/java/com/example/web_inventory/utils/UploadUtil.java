@@ -8,9 +8,9 @@ import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UploadUtil {
-    
+
     public static boolean UploadImage(MultipartFile image) {
-        
+
         boolean successfulUpload = false;
 
         if(!image.isEmpty()) {
@@ -18,7 +18,7 @@ public class UploadUtil {
 
             try {
 
-                String folderUpload = "scr/main/resources/static/images/uploads";
+                String folderUpload = "src/main/resources/static/images/uploads";
 
                 File dir  = new File(folderUpload);
 
