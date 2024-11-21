@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.web_inventory.dtos.request.ProductRequestDTO;
 import com.example.web_inventory.dtos.response.ProductResponseDTO;
 import com.example.web_inventory.entities.ProductEntity;
+import com.example.web_inventory.interfaces.ProductInterface;
 import com.example.web_inventory.repositories.ProductRepository;
 import com.example.web_inventory.services.ProductService;
 import com.example.web_inventory.utils.UploadUtil;
@@ -80,6 +81,12 @@ public class ProductController {
         List<ProductEntity> product = productService.getAllProducts();
 
         return product;
+    }
+
+    @GetMapping("/stock")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductInterface> getStock() {
+        return productService.getStock();
     }
 
     @PutMapping(path = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

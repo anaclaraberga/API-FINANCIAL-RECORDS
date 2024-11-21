@@ -13,6 +13,7 @@ import com.example.web_inventory.dtos.request.TransactionRequestDTO;
 import com.example.web_inventory.entities.ProductEntity;
 import com.example.web_inventory.entities.SupplierEntity;
 import com.example.web_inventory.enums.TransactionType;
+import com.example.web_inventory.interfaces.ProductInterface;
 import com.example.web_inventory.repositories.ProductRepository;
 import com.example.web_inventory.repositories.SupplierRepository;
 
@@ -57,6 +58,10 @@ public class ProductService {
 
     public List<ProductEntity> getAllProducts() {
         return repository.findAll();
+    }
+
+    public List<ProductInterface> getStock() {
+        return repository.getStock();
     }
 
     public List<ProductEntity> getProductByName(String name) {
