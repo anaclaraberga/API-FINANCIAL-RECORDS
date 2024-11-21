@@ -1,7 +1,7 @@
 package com.example.web_inventory.entities;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.example.web_inventory.dtos.request.TransactionRequestDTO;
@@ -9,6 +9,8 @@ import com.example.web_inventory.enums.TransactionType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,13 +28,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TransactionEntity implements Serializable{
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "orders_id", nullable = false)
+    @JoinColumn(name = "orders_id", nullable = true)
     private OrderEntity orderId;
 
     @ManyToOne
@@ -43,14 +45,15 @@ public class TransactionEntity implements Serializable{
     private LocalDateTime dateTimeAtCreation;
 
     @Column(nullable = false)
-    private BigInteger value;
+    private BigDecimal value;
 
     @Column(nullable = false, name = "transaction_type")
-    private TransactionType transactionType;
+    @Enumerated(EnumType.STRING)
+    private TransactionType type;
 
     public TransactionEntity(TransactionRequestDTO dto) {
         this.dateTimeAtCreation = LocalDateTime.now();
         this.value = dto.getValue();
-        this.transactionType = dto.getTransactionType();
+        this.type = dto.getType();
     }
 }

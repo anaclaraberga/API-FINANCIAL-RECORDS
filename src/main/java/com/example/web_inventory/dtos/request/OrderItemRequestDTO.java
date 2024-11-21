@@ -1,6 +1,6 @@
 package com.example.web_inventory.dtos.request;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,5 +11,5 @@ public class OrderItemRequestDTO {
     private Long orderId;
     private Long productId;
     private Integer quantity;
-    private BigInteger unitPrice;
+    private BigDecimal unitPrice;
 }

@@ -1,7 +1,7 @@
 package com.example.web_inventory.entities;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 import com.example.web_inventory.dtos.request.OrderItemRequestDTO;
 
@@ -23,11 +23,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderItemEntity implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
     @JoinColumn(name = "orders_id", nullable = false)
     private OrderEntity orderId;
@@ -40,8 +40,8 @@ public class OrderItemEntity implements Serializable {
     private Integer quantity;
 
     @Column(nullable = false, length = 15)
-    private BigInteger unitPrice;
-    
+    private BigDecimal unitPrice;
+
     public OrderItemEntity(OrderItemRequestDTO dto) {
         this.quantity = dto.getQuantity();
         this.unitPrice = dto.getUnitPrice();

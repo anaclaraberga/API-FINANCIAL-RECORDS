@@ -1,6 +1,6 @@
 package com.example.web_inventory.dtos.response;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 import com.example.web_inventory.entities.OrderItemEntity;
 
@@ -10,12 +10,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderItemResponseDTO {
-    
+
     private Long id;
     private Long orderId;
     private Long productId;
     private Integer quantity;
-    private BigInteger unitPrice;
+    private BigDecimal unitPrice;
 
     public OrderItemResponseDTO(OrderItemEntity orderItem) {
         this.id = orderItem.getId();

@@ -28,12 +28,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TransactionController {
-    
+
     @Autowired
     TransactionService transactionService;
 
     public TransactionController(TransactionService transactionService) {
-
         this.transactionService = transactionService;
     }
 
@@ -59,13 +58,14 @@ public class TransactionController {
     public List<TransactionEntity> getAllCustomers() {
 
         List<TransactionEntity> transaction = transactionService.getAllTransactions();
-        
+
         return transaction;
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<TransactionEntity> updateTransactionById(@PathVariable(value = "id") Long id, @RequestBody TransactionRequestDTO dto) {
+    public ResponseEntity<TransactionEntity> updateTransactionById(@PathVariable(value = "id") Long id,
+            @RequestBody TransactionRequestDTO dto) {
 
         return transactionService.updateTransactionById(dto, id);
     }

@@ -2,7 +2,7 @@ package com.example.web_inventory.enums;
 
 public enum TransactionType {
     ENTRADA("Entrada"),
-    SAÍDA("Saída");
+    SAIDA("Saída");
 
     private final String text;
 
