@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.web_inventory.dtos.request.OrderRequestDTO;
 import com.example.web_inventory.entities.CustomerEntity;
 import com.example.web_inventory.entities.OrderEntity;
+import com.example.web_inventory.entities.OrderItemEntity;
 import com.example.web_inventory.repositories.CustomerRepository;
 import com.example.web_inventory.repositories.OrderRepository;
 
@@ -45,6 +46,13 @@ public class OrderService {
 
         return order.orElseThrow(() -> new ObjectNotFoundException(
             "Pedido não encontrado! Id: " + id + "Tipo: " + OrderEntity.class.getName(), order));
+    }
+
+    public List<OrderEntity> findByCustomerId(Long customerId) {
+        CustomerEntity customerEntity = this.customerRepository.findById(customerId)
+            .orElseThrow(() -> new ObjectNotFoundException("Pedido não encontrado para o ID: " + customerId + OrderItemEntity.class.getName(), customerId));
+
+        return repository.findByCustomerId(customerEntity.getId());
     }
 
     public List<OrderEntity> getAllOrders() {

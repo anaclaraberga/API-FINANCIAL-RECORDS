@@ -1,6 +1,9 @@
 package com.example.web_inventory.dtos.response;
 
+import java.util.List;
+
 import com.example.web_inventory.entities.CustomerEntity;
+import com.example.web_inventory.entities.OrderEntity;
 
 import lombok.Data;
 
@@ -12,6 +15,7 @@ public class CustomerResponseDTO {
     private String email;
     private String phone;
     private String zipCode;
+    private List<OrderEntity> items;
 
     public CustomerResponseDTO(CustomerEntity customer) {
         this.id = customer.getId();
