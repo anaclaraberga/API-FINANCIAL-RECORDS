@@ -48,6 +48,7 @@ public class OrderItemService {
         OrderItemEntity entity = new OrderItemEntity(dto);
         entity.setProductId(product);
         entity.setOrderId(order);
+        entity.setUnitPrice(product.getPrice());
 
         if (product.getQuantity() < dto.getQuantity()) {
             throw new RuntimeException("Não há estoque suficiente para esta operação");

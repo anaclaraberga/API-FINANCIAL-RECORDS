@@ -56,6 +56,6 @@ public class OrderEntity implements Serializable {
 
     public OrderEntity(OrderRequestDTO dto) {
         this.status = dto.getStatus();
-        this.totalValue = dto.getTotalValue();
+        this.totalValue = dto.getTotalValue() != null ? dto.getTotalValue() : BigDecimal.ZERO;
     }
 }
