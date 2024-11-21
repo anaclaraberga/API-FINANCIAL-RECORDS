@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class TransactionService {
-    
+
     @Autowired
     private TransactionRepository repository;
 
@@ -32,19 +32,20 @@ public class TransactionService {
     private ProductRepository productRepository;
 
     public TransactionEntity createTransaction(TransactionRequestDTO dto) {
-        OrderEntity order = orderRepository.findById(dto.getOrderId())
-            .orElseThrow(() -> new RuntimeException(
-                "Order not found."
-            ));
-
-        ProductEntity product = productRepository.findById(dto.getProductId())
-            .orElseThrow(() -> new RuntimeException(
-                "Product not found."
-            ));
-
         TransactionEntity entity = new TransactionEntity(dto);
 
-        entity.setOrderId(order);
+        if (dto.getOrderId() != null) {
+            OrderEntity order = orderRepository.findById(dto.getOrderId())
+                    .orElseThrow(() -> new RuntimeException(
+                            "Order not found."));
+
+            entity.setOrderId(order);
+        }
+
+        ProductEntity product = productRepository.findById(dto.getProductId())
+                .orElseThrow(() -> new RuntimeException(
+                        "Product not found."));
+
         entity.setProductId(product);
 
         return repository.save(entity);
@@ -63,19 +64,19 @@ public class TransactionService {
 
     public ResponseEntity<TransactionEntity> updateTransactionById(TransactionRequestDTO dto, Long id) {
         return repository.findById(id)
-        .map(update -> {
-            update.setValue(dto.getValue());
-            update.setTransactionType(dto.getTransactionType());
-            TransactionEntity updated = repository.save(update);
-            return ResponseEntity.ok().body(updated);
-        }).orElse(ResponseEntity.notFound().build());
+                .map(update -> {
+                    update.setValue(dto.getValue());
+                    update.setType(dto.getType());
+                    TransactionEntity updated = repository.save(update);
+                    return ResponseEntity.ok().body(updated);
+                }).orElse(ResponseEntity.notFound().build());
     }
 
     public ResponseEntity<Object> deleteById(Long id) {
         return repository.findById(id)
-        .map(delete -> {
-            repository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        }).orElse(ResponseEntity.notFound().build());
+                .map(delete -> {
+                    repository.deleteById(id);
+                    return ResponseEntity.noContent().build();
+                }).orElse(ResponseEntity.notFound().build());
     }
 }
