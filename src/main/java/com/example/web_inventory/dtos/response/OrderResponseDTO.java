@@ -2,8 +2,10 @@ package com.example.web_inventory.dtos.response;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.example.web_inventory.entities.OrderEntity;
+import com.example.web_inventory.entities.OrderItemEntity;
 import com.example.web_inventory.enums.Status;
 
 import lombok.Getter;
@@ -17,6 +19,7 @@ public class OrderResponseDTO {
     private Long customerId;
     private Status status;
     private BigDecimal totalValue;
+    private List<OrderItemEntity> items;
 
     public OrderResponseDTO(OrderEntity entity) {
         this.id = entity.getId();

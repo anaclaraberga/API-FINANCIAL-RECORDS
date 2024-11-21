@@ -1,6 +1,6 @@
 package com.example.web_inventory.dtos.response;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 import com.example.web_inventory.entities.ProductEntity;
 
@@ -14,7 +14,7 @@ public class ProductResponseDTO {
     private Long id;
     private String name;
     private String description;
-    private BigInteger price;
+    private BigDecimal price;
     private int quantity;
     private String image;
     private Long supplierId;

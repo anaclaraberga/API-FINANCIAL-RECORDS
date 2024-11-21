@@ -66,7 +66,7 @@ public class ProductService {
             update.setDescription(dto.getDescription());
             update.setPrice(dto.getPrice());
             update.setQuantity(dto.getQuantity());
-            update.setImage(dto.getImage());
+            // update.setImage(dto.getImage());
 
             ProductEntity updated = repository.save(update);
             return ResponseEntity.ok().body(updated);

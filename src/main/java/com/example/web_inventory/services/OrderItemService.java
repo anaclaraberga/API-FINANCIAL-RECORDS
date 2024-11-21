@@ -56,7 +56,7 @@ public class OrderItemService {
         OrderEntity orderEntity = this.orderRepository.findById(orderId)
             .orElseThrow(() -> new ObjectNotFoundException("Pedido não encontrado para o ID: " + orderId + OrderItemEntity.class.getName(), orderId));
 
-        List<OrderItemEntity> entity = this.repository.findByOrderId(orderEntity);
+        List<OrderItemEntity> entity = this.repository.findByOrderId(orderEntity.getId());
 
         return entity;
     }

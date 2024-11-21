@@ -1,7 +1,7 @@
 package com.example.web_inventory.entities;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 import com.example.web_inventory.dtos.request.ProductRequestDTO;
 
@@ -35,7 +35,7 @@ public class ProductEntity implements Serializable {
     private String description;
 
     @Column(nullable = false)
-    private BigInteger price;
+    private BigDecimal price;
 
     @Column(nullable = false)
     private int quantity;
@@ -52,6 +52,6 @@ public class ProductEntity implements Serializable {
         this.description = dto.getDescription();
         this.price = dto.getPrice();
         this.quantity = dto.getQuantity();
-        this.image = dto.getImage();
+        this.image = dto.getImage().getOriginalFilename();
     }
 }

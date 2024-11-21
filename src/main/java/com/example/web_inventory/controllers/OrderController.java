@@ -52,15 +52,16 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<OrderItemEntity>> findOrderById(@PathVariable Long id) {
+    public ResponseEntity<OrderResponseDTO> findOrderById(@PathVariable Long id) {
 
         OrderEntity entity = this.orderService.findOrderById(id);
 
         List<OrderItemEntity> orderItems = this.orderItemService.findByOrderId(id);
 
-        ResponseEntity.ok(entity);
+        OrderResponseDTO dto = new OrderResponseDTO(entity);
+        dto.setItems(orderItems);
 
-        return ResponseEntity.ok(orderItems);
+        return ResponseEntity.ok(dto);
     }
 
     @GetMapping
