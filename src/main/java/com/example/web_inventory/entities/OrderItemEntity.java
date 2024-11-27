@@ -38,12 +38,16 @@ public class OrderItemEntity implements Serializable {
 
     @Column(nullable = false, length = 5)
     private Integer quantity;
-
+    
     @Column(nullable = false, length = 15)
     private BigDecimal unitPrice;
 
     public OrderItemEntity(OrderItemRequestDTO dto) {
         this.quantity = dto.getQuantity();
-        this.unitPrice = dto.getUnitPrice();
+    }
+
+    public BigDecimal getUnitPrice() {
+        this.unitPrice = productId.getPrice();
+        return unitPrice;
     }
 }

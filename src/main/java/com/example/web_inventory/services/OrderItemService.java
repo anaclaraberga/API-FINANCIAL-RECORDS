@@ -89,7 +89,6 @@ public class OrderItemService {
         return repository.findById(id)
         .map(update -> {
             update.setQuantity(dto.getQuantity());
-            update.setUnitPrice(dto.getUnitPrice());
 
             OrderItemEntity updated = repository.save(update);
             return ResponseEntity.ok().body(updated);
