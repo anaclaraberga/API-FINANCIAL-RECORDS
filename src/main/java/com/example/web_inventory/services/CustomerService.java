@@ -35,6 +35,10 @@ public class CustomerService {
                 "Cliente não encontrado! Id: " + id + "Tipo: " + CustomerEntity.class.getName(), customer));
     }
 
+    public Optional<CustomerEntity> findCustomerByNameOrCpf(String name, String nationalRegistry) {
+        return repository.findByNameOrCpf(name, nationalRegistry);
+    }
+
     public List<CustomerEntity> getAllCustomers() {
         return repository.findAll();
     }
